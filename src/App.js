@@ -1,8 +1,9 @@
+import { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
-import ExpenseForm from "./components/NewExpense/ExpenseForm";
 import NewExpense from "./components/NewExpense/NewExpense";
-function App() {
-  const expenses = [
+
+const App = () => {
+  const Dummy_Expenses = [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -23,8 +24,12 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ];
+  const [expenses, setExpenses] = useState(Dummy_Expenses);
   const addExpenseHandler = (expense) => {
-    console.log(expense);
+    // console.log(expense);
+    setExpenses((prev) => {
+      return [expense, ...prev]; // this is not working
+    });
   };
   return (
     <div>
@@ -32,6 +37,6 @@ function App() {
       <Expenses items={expenses} />
     </div>
   );
-}
+};
 
 export default App;
